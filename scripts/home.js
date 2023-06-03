@@ -3,12 +3,15 @@ const TASKS = [
 ];
 
 let isCurrentlyUpdating = false;
+let isDescending = true;
 let taskLocation = {
     priority: -1,
     index: -1
 }
 const NEW_NAME_ID = "updateNameId";
 const NEW_PRI_ID = "updatePriorityId";
+const ARROW_DOWN = "fa-sharp fa-solid fa-caret-down";
+const ARROW_UP = "fa-solid fa-caret-up";
 /**Builders ***************************************************/
 
 function buildTasks(){
@@ -17,8 +20,11 @@ function buildTasks(){
     let task = document.createElement("tr");
     task.setAttribute("class", "mt-1");
     let counter = 1;
-    for(let priority = 0; priority < TASKS.length; priority++){
-        if(TASKS[priority].length == 0) continue;
+    let priority = TASKS.length - 1;
+    for(let i = 0; i < TASKS.length; i++){
+      //  debugger;
+        priority = isDescending? i: priority - i;
+        if(TASKS[priority].length == 0) { priority = TASKS.length - 1; continue;}
         for(let index = 0 ; index < TASKS[priority].length; index++){
             task.appendChild(buildTableDetail(counter));
             task.appendChild(buildTaskName(priority, index));
@@ -28,7 +34,7 @@ function buildTasks(){
             task = document.createElement("tr");
             counter++;
         }
-
+        if(!isDescending) priority = TASKS.length - 1;
     }
 }
 
@@ -206,4 +212,12 @@ function getPriority(index){
     if(index == 3) return "Low";
     if(index == 4) return "Very Low"
     else return "-";
+}
+
+function sortTasksList(){
+    isDescending = !isDescending;
+    let arrowClass = isDescending? ARROW_DOWN: ARROW_UP;
+    let icon = document.querySelector("#priorityId > i");
+    icon.setAttribute("class", arrowClass);
+    buildTasks();
 }
