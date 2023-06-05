@@ -10,7 +10,6 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
     <script src="https://kit.fontawesome.com/e95a6ea3dc.js" crossorigin="anonymous"></script>
 </head>
-<body>
     <h1 class="mt-5 text-center">To do list Application</h1>
     <!--Inputs Section-->
     <div class="container text-center">
@@ -28,7 +27,7 @@
               </select>
             </div>
             <div class="col-sm-1">
-                <button class="btn btn-outline-success pe-4 ps-4" onclick="addTask()">
+                <button class="btn btn-outline-success pe-4 ps-4" onclick="tasksManager.addTask()">
                     ADD
                 </button>
             </div>
@@ -43,14 +42,17 @@
             <tr>
                 <th class="text-center">#</th>
                 <th class="text-center">Task Name</th>
-                <th class="text-center" id="priorityId" onclick="sortTasksList()">Priority <i class="fa-sharp fa-solid fa-caret-down"></i></th>
+                <th class="text-center" id="priorityId" onclick="tasksManager.sortTasksList()">Priority <i class="fa-sharp fa-solid fa-caret-down"></i></th>
+                <th class="text-center">Status</th>
                 <th class="text-center">Actions</th>
+                <th class="text-end"></th>
             </tr>
         </thead>
         <tbody id="tableBody">
 
         </tbody>
     </table>
+    <button class="btn btn-danger rounded-5 float-end me-5" id="deletAllMarked" onclick="tasksManager.deleteMarked()"> Delete Marked</button>
   <!--  <div class="col-6 mt-2">
         <button class="btn btn-outline-success " onclick="getHighestPriorityTask()">
             Most Important
