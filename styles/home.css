@@ -6,7 +6,9 @@
     color: #ffffff;
     transition: 0.5s;
 }*/
-
+#deletAllMarked{
+    display: none;
+}
 @media screen and (max-width: 576px) {
     #inputsSection > div{
         margin-top: 1vh;
